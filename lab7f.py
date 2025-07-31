@@ -13,6 +13,15 @@ class Time:
         self.minute = minute
         self.second = second
 
+    def __str__(self):
+        '''return a string representation for the object self'''
+        return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
+
+    def __repr__(self):
+        '''return a string representation for the object self'''
+        '''just instead of ':' use '.' in the formatting string'''
+        return f'{self.hour:02d}.{self.minute:02d}.{self.second:02d}'
+
     def format_time(self):
         """Return time object as a formatted string"""
         return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
@@ -41,6 +50,10 @@ class Time:
         if self.minute >= 60 or self.second >= 60 or self.hour >= 24:
             return False
         return True
+
+    def __add__(self, t2):
+        """Overload the + operator to add two Time objects"""
+        return self.sum_times(t2)
 
 def sec_to_time(seconds):
     """Convert seconds from midnight to a time object"""
